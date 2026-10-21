@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>埔心基督徒聚會處週報 - 第1516期</title>
+  <meta name="description" content="埔心基督徒聚會處互動式電子週報 - 主後2026年10月18日第1516期，全心倚賴耶和華、一切事上認定主。">
+  <meta name="theme-color" content="#d97706">
+  <!-- Google Fonts: Noto Sans TC & Serif TC for warm church typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons for rich visual indicators -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- Canvas Confetti for celebratory animations -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-size-md">
+
+  <!-- Mobile App Container (Optimized for Mobile Portrait) -->
+  <div class="mobile-wrapper">
+
+    <!-- Top Sticky Header -->
+    <header class="app-header">
+      <div class="header-top">
+        <div class="church-brand">
+          <div class="logo-circle">
+            <i class="fa-solid fa-cross"></i>
+          </div>
+          <div>
+            <h1 class="church-name">埔心基督徒聚會處</h1>
+            <p class="church-tagline">全心倚賴耶和華、一切事上認定主</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <!-- Sound Toggle Button -->
+          <button id="soundToggleBtn" class="action-btn" title="切換音效" aria-label="切換音效">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+          <!-- Font Size Adjustment Dropdown / Toggle -->
+          <div class="font-size-switcher">
+            <button id="fontSizeBtn" class="action-btn" title="調整字體大小" aria-label="調整字體大小">
+              <i class="fa-solid fa-font"></i>
+            </button>
+            <div id="fontDropdown" class="font-dropdown hidden">
+              <button data-size="font-size-sm">標準 A</button>
+              <button data-size="font-size-md" class="active">放大 A+</button>
+              <button data-size="font-size-lg">特大 A++</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bulletin Issue Badge & Search Bar -->
+      <div class="bulletin-meta-bar">
+        <div class="issue-pill">
+          <i class="fa-regular fa-calendar-check"></i>
+          <span>2026.10.18 第 1516 期</span>
+        </div>
+        <button id="searchTriggerBtn" class="search-trigger-btn">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>檢索週報內容...</span>
+        </button>
+      </div>
+
+      <!-- Real-time Search Box (Collapsible) -->
+      <div id="searchContainer" class="search-container hidden">
+        <div class="search-input-wrap">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="searchInput" placeholder="輸入關鍵字 (如: 葉文漢、禱告、獎學金、大掃除)..." autocomplete="off">
+          <button id="searchClearBtn" class="search-clear-btn hidden" aria-label="清除搜尋">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </button>
+        </div>
+        <div id="searchStats" class="search-stats hidden">找到 <span id="matchCount">0</span> 處相關內容</div>
+      </div>
+    </header>
+
+    <!-- Main Content Area with Navigation Tabs -->
+    <main class="app-main" id="mainContent">
+
+      <!-- ================= SECTION: 首頁總覽 (HOME) ================= -->
+      <section id="section-home" class="tab-pane active">
+        
+        <!-- Welcome Hero Banner -->
+        <div class="hero-card">
+          <div class="hero-bg-shapes">
+            <span class="shape shape-1"></span>
+            <span class="shape shape-2"></span>
+          </div>
+          <div class="hero-content">
+            <span class="badge-accent"><i class="fa-solid fa-dove"></i> 願你們平安</span>
+            <h2 class="hero-title">埔心基督徒聚會處週報</h2>
+            <p class="hero-subtitle">主後 2026 年 10 月 18 日 • 第 1516 期</p>
+            <div class="hero-quick-links">
+              <button class="quick-pill" onclick="switchTab('worship')">
+                <i class="fa-solid fa-book-bible"></i> 主日崇拜程序
+              </button>
+              <button class="quick-pill" onclick="switchTab('prayer')">
+                <i class="fa-solid fa-hands-praying"></i> 本週代禱牆
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 本週金句 (Verse of the Week) - Highlight Card -->
+        <div class="verse-card card-interactive" id="verseSection">
+          <div class="card-glow"></div>
+          <div class="card-header-styled">
+            <div class="header-icon-box gold">
+              <i class="fa-solid fa-quote-left"></i>
+            </div>
+            <div>
+              <span class="section-tag">本週金句</span>
+              <h3 class="card-title">神的話語是生命的良藥</h3>
+            </div>
+            <button id="playVerseAudioBtn" class="chime-btn" title="聆聽祥和鐘聲與讀經">
+              <i class="fa-solid fa-bell"></i>
+              <span>祥和琴聲</span>
+            </button>
+          </div>
+
+          <div class="verse-quote-box">
+            <p class="verse-text searchable" id="verseText">
+              「你要保守你心，勝過保守一切，因為一生的果效是由心發出。」
+            </p>
+            <div class="verse-source searchable">—— 箴言第四章 23 節</div>
+          </div>
+
+          <div class="verse-actions">
+            <button id="copyVerseBtn" class="btn-action-light">
+              <i class="fa-regular fa-copy"></i> 複製金句
+            </button>
+            <button id="openScriptureBtn" class="btn-action-light" onclick="toggleScriptureModal()">
+              <i class="fa-solid fa-book-open"></i> 閱讀前後經文 (箴言4:20-23)
+            </button>
+          </div>
+        </div>
+
+        <!-- 今日焦點焦點跑馬燈 / 重要提示 -->
+        <div class="notice-card">
+          <div class="notice-icon"><i class="fa-solid fa-bullhorn"></i></div>
+          <div class="notice-body">
+            <strong>今日特別提醒：</strong>
+            <p>主日崇拜後將舉行「全教會秋季大掃除」，打掃後備有愛心便當（副堂領取）；詩班隨後將練唱詩歌《親愛耶穌》，歡迎齊心服事！</p>
+          </div>
+        </div>
+
+        <!-- 講道預覽速報 -->
+        <div class="info-card">
+          <div class="info-card-header">
+            <div class="header-icon-box blue">
+              <i class="fa-solid fa-microphone-lines"></i>
+            </div>
+            <div>
+              <span class="section-tag">本週主日信息</span>
+              <h3 class="card-title searchable">人者「心」之器</h3>
+            </div>
+          </div>
+          <div class="sermon-meta">
+            <div class="sermon-speaker">
+              <i class="fa-solid fa-user-tie"></i>
+              <span>講員：<strong>葉文漢 牧師</strong>（彌賽亞全人關懷協會）</span>
+            </div>
+            <div class="sermon-passage">
+              <i class="fa-solid fa-bible"></i>
+              <span>經文：<strong>箴言第四章 20～23 節</strong></span>
+            </div>
+          </div>
+          <p class="sermon-desc">
+            感謝葉文漢牧師前來傳講信息並分享協會事工。願上帝保守我們的心懷意念，天天得享主恩沛降。
+          </p>
+        </div>
+
+        <!-- 壽星生辰祝賀區塊 (互動發射彩帶) -->
+        <div class="birthday-card card-interactive">
+          <div class="card-header-styled">
+            <div class="header-icon-box pink">
+              <i class="fa-solid fa-cake-candles"></i>
+            </div>
+            <div>
+              <span class="section-tag">主內祝福</span>
+              <h3 class="card-title">十月份壽星平安喜樂</h3>
+            </div>
+            <button id="birthdayBlessBtn" class="birthday-btn" title="送出祝福彩帶">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>獻上祝福</span>
+            </button>
+          </div>
+          <p class="birthday-lead">願耶和華賜福給你，保護你；願耶和華使祂的臉光照你，賜恩給你！</p>
+          <div class="birthday-names searchable" id="birthdayList">
+            <span class="birthday-pill">王樂禾 (1)</span>
+            <span class="birthday-pill">王德馨 (2)</span>
+            <span class="birthday-pill">王志駿 (5)</span>
+            <span class="birthday-pill">魏紹霞 (8)</span>
+            <span class="birthday-pill">孫慶華 (9)</span>
+            <span class="birthday-pill">楊雅慧 (13)</span>
+            <span class="birthday-pill">吳鴻珠 (17)</span>
+            <span class="birthday-pill highlight-today">魏翠珍 (19)</span>
+            <span class="birthday-pill highlight-today">林靜宜 (20)</span>
+            <span class="birthday-pill">方淑儀 (22)</span>
+            <span class="birthday-pill">周裕宸 (22)</span>
+            <span class="birthday-pill">呂睿杰 (23)</span>
+            <span class="birthday-pill">傅幼斌 (28)</span>
+            <span class="birthday-pill">黃李玉枝 (31)</span>
+          </div>
+        </div>
+
+        <!-- 教會聯絡資訊卡片 (一鍵撥打與導航) -->
+        <div class="contact-quick-card">
+          <h4 class="contact-title"><i class="fa-solid fa-church"></i> 埔心基督徒聚會處</h4>
+          <div class="contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span class="searchable">桃園市楊梅區埔心文化街177號</span>
+            <a href="https://maps.google.com/?q=桃園市楊梅區埔心文化街177號" target="_blank" class="badge-link">
+              <i class="fa-solid fa-diamond-turn-right"></i> 導航
+            </a>
+          </div>
+          <div class="contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <span>(03) 482-3543 • 431-3642 • 481-7233</span>
+            <a href="tel:034823543" class="badge-link"><i class="fa-solid fa-phone-flip"></i> 撥打</a>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ================= SECTION: 主日崇拜程序 (WORSHIP) ================= -->
+      <section id="section-worship" class="tab-pane">
+        <div class="section-banner">
+          <div class="banner-icon"><i class="fa-solid fa-hands-holding-child"></i></div>
+          <div>
+            <h2 class="banner-title">主日崇拜程序</h2>
+            <p class="banner-sub">心靈和誠實敬拜 • 安靜等候主</p>
+          </div>
+        </div>
+
+        <!-- 崇拜時間與講員卡片 -->
+        <div class="worship-speaker-box">
+          <div class="speaker-chip">
+            <span class="label">講員</span>
+            <strong class="val searchable">葉文漢 牧師</strong>
+          </div>
+          <div class="speaker-chip">
+            <span class="label">司會</span>
+            <strong class="val searchable">臧自強 弟兄</strong>
+          </div>
+          <div class="speaker-chip">
+            <span class="label">敬拜讚美</span>
+            <strong class="val searchable">臧自強 弟兄</strong>
+          </div>
+        </div>
+
+        <!-- 崇拜程序時間軸 (Interactive Timeline) -->
+        <div class="timeline-container">
+
+          <!-- 1. 會前禱告 -->
+          <div class="timeline-item searchable">
+            <div class="timeline-marker">1</div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="item-title">會前禱告</span>
+                <span class="item-role">主日司會</span>
+              </div>
+              <p class="item-desc">為教會及各團契事工、同工服事禱告。</p>
+            </div>
+          </div>
+
+          <!-- 2. 序樂 -->
+          <div class="timeline-item searchable">
+            <div class="timeline-marker">2</div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="item-title">序 樂</span>
+                <span class="item-role">全體會眾</span>
+              </div>
+              <p class="item-desc">安靜等候，預備心朝見神。</p>
+            </div>
+          </div>
+
+          <!-- 3. 宣召 -->
+          <div class="timeline-item searchable">
+            <div class="timeline-marker">3</div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="item-title">宣 召</span>
+                <span class="item-role">主日司會</span>
+              </div>
+              <p class="item-desc">詩篇 95 篇 1～3 節、6～7 節</p>
+              <button class="expand-verse-btn" onclick="toggleAccordion('callScripture')">
+                <i class="fa-solid fa-angle-down"></i> 查看宣召經文全文
+              </button>
+              <div id="callScripture" class="accordion-content hidden">
+                <blockquote>
+                  「1 來啊，我們要向耶和華歌唱，向拯救我們的磐石歡呼！<br>
+                  2 我們要來感謝祂，用詩歌向祂歡呼！<br>
+                  3 因耶和華為大神，為大王，超乎萬神之上。<br>
+                  6 來啊，我們要屈身敬拜，在造我們的耶和華面前跪下。<br>
+                  7 因為祂是我們的神；我們是祂草場的羊，是祂手下的民。」
+                </blockquote>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. 敬拜讚美 -->
+          <div class="timeline-item searchable highlight-item">
+            <div class="timeline-marker"><i class="fa-solid fa-music"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="item-title">敬拜讚美</span>
+                <span class="item-role">臧自強 弟兄</span>
+              </div>
+              <div class="hymn-list">
+                <div class="hymn-tag"><i class="fa-solid fa-record-vinyl"></i> 唯有耶穌 ＋ 祢是配得</div>
+                <div class="hymn-tag"><i class="fa-solid fa-record-vinyl"></i> 當轉眼仰望耶穌</div>
+                <div class="hymn-tag"><i class="fa-solid fa-record-vinyl"></i> 祢的話</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. 講台信息 -->
+          <div class="timeline-item searchable special-highlight">
+            <div class="timeline-marker"><i class="fa-solid fa-book-bible"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="item-title">講台信息</span>
+                <span class="item-role">葉文漢 牧師</span>
+              </div>
+              <div class="sermon-badge-title">人者「心」之器</div>
+              <p class="item-desc">經文：箴言第四章 20～23 節</p>
+              <button class="expand-verse-btn" onclick="toggleAccordion('sermonPassage')">
+                <i class="fa-solid fa-angle-down"></i> 查看信息經文
+              </button>
+              <div id="sermonPassage" class="accordion-content hidden">
+                <blockquote>
+                  「20 我兒，要留心聽我的言詞，側耳聽我的話語，<br>
+                  21 都不可離你的眼目，要存記在你心裡。<br>
+                  22 因為尋得祂的，就得了生命，又得了醫全體的良藥。<br>
+                  23 你要保守你心，勝過保守一切，因為一生的果效是由心發出。」
+                </blockquote>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. 教會報告與頒獎 -->
+          <div class="timeline-item searchable">
+            <div class="timeline-marker">6</div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="item-title">教會報告 / 本週金句</span>
+                <span class="item-role">主日司會</span>
+              </div>
+              <div class="award-box">
+                <span class="award-tag"><i class="fa-solid fa-award"></i> 特別環節</span>
+                <strong>頒發學生獎學金</strong>
+                <p>鼓勵教會青少年及主日學學子在學業上勤勉向上，榮神益人！</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. 主禱文 -->
+          <div class="timeline-item searchable">
+            <div class="timeline-marker">7</div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="item-title">主 禱 文</span>
+                <span class="item-role">全體會眾</span>
+              </div>
+              <p class="item-desc">馬太福音 6 章 9～13 節</p>
+              <button class="expand-verse-btn" onclick="toggleAccordion('lordsPrayer')">
+                <i class="fa-solid fa-angle-down"></i> 展開主禱文全文
+              </button>
+              <div id="lordsPrayer" class="accordion-content hidden">
+                <div class="lords-prayer-card">
+                  我們在天上的父：願人都尊祢的名為聖。<br>
+                  願祢的國降臨；願祢的旨意行在地上，如同行在天上。<br>
+                  我們日用的飲食，今日賜給我們。<br>
+                  免我們的債，如同我們免了人的債。<br>
+                  不叫我們遇見試探；救我們脫離兇惡。<br>
+                  因為國度、權柄、榮耀，全是祢的，直到永遠。阿們！
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. 聖餐 -->
+          <div class="timeline-item searchable">
+            <div class="timeline-marker"><i class="fa-solid fa-bread-slice"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="item-title">聖 餐 (擘餅記念主)</span>
+                <span class="item-role">江茂松 牧師</span>
+              </div>
+              <p class="item-desc">同心記念主耶穌為我們捨身流血的救贖大愛。</p>
+            </div>
+          </div>
+
+          <!-- 9. 三一頌、祝禱、阿們頌 -->
+          <div class="timeline-item searchable">
+            <div class="timeline-marker">9</div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="item-title">三一頌 • 祝禱 • 阿們頌</span>
+                <span class="item-role">會眾 • 江牧師</span>
+              </div>
+              <p class="item-desc">領受上帝從天而降的豐盛恩典與平安祝福。</p>
+            </div>
+          </div>
+
+          <!-- 10. 互道平安 -->
+          <div class="timeline-item searchable">
+            <div class="timeline-marker"><i class="fa-solid fa-hand-holding-heart"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="item-title">互道平安</span>
+                <span class="item-role">全體會眾</span>
+              </div>
+              <p class="item-desc">彼此祝福，在基督的愛中合而為一。</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= SECTION: 教會消息 (NEWS) ================= -->
+      <section id="section-news" class="tab-pane">
+        <div class="section-banner green">
+          <div class="banner-icon"><i class="fa-solid fa-bullhorn"></i></div>
+          <div>
+            <h2 class="banner-title">教會消息</h2>
+            <p class="banner-sub">各樣事工報告與團契生活消息</p>
+          </div>
+        </div>
+
+        <!-- 消息清單卡片 -->
+        <div class="news-list">
+
+          <!-- 消息 1 -->
+          <div class="news-card searchable">
+            <div class="news-number">01</div>
+            <div class="news-content">
+              <h3 class="news-title">感謝講員葉文漢牧師</h3>
+              <p>感謝彌賽亞全人關懷協會葉文漢牧師前來傳講信息並分享協會事工。願主賜福葉牧師的服事以及協會各項事工。</p>
+              <div class="news-tag"><i class="fa-solid fa-user-check"></i> 主日講道</div>
+            </div>
+          </div>
+
+          <!-- 消息 2 -->
+          <div class="news-card searchable">
+            <div class="news-number">02</div>
+            <div class="news-content">
+              <h3 class="news-title">晨更聚會與進度</h3>
+              <p>教會週一至週六早上 <strong>07:30 到 08:30</strong> 晨更，歡迎弟兄姊妹們踴躍參加。本週閱讀由<strong>新約聖經羅馬書第 16 章</strong>起。</p>
+              <div class="news-tag"><i class="fa-solid fa-sun"></i> 每日晨更</div>
+            </div>
+          </div>
+
+          <!-- 消息 3 -->
+          <div class="news-card searchable">
+            <div class="news-number">03</div>
+            <div class="news-content">
+              <h3 class="news-title">週六守望禱告會</h3>
+              <p>禮拜六下午 <strong>17:30 到 18:30</strong> 的禱告會，邀請弟兄姊妹同來為教會、國家、各樣肢體需要關懷代禱。</p>
+              <div class="news-tag"><i class="fa-solid fa-hands-praying"></i> 禱告會</div>
+            </div>
+          </div>
+
+          <!-- 消息 4 -->
+          <div class="news-card searchable">
+            <div class="news-number">04</div>
+            <div class="news-content">
+              <h3 class="news-title">讀經總動員：舊約進度</h3>
+              <p>全教會舊約讀經計畫持續進行中，本週的進度是由<strong>詩篇第 45 章</strong>起，鼓勵弟兄姊妹每日與神的話同行。</p>
+              <div class="news-tag"><i class="fa-solid fa-book"></i> 讀經進度</div>
+            </div>
+          </div>
+
+          <!-- 消息 5: 壽星 -->
+          <div class="news-card searchable highlight-card">
+            <div class="news-number"><i class="fa-solid fa-gift"></i></div>
+            <div class="news-content">
+              <h3 class="news-title">2026 年十月份壽星</h3>
+              <p>祝願十月份生日的肢體蒙主厚恩、年歲滿溢恩典：</p>
+              <div class="news-pills-wrap">
+                <span>王樂禾 (1)</span><span>王德馨 (2)</span><span>王志駿 (5)</span>
+                <span>魏紹霞 (8)</span><span>孫慶華 (9)</span><span>楊雅慧 (13)</span>
+                <span>吳鴻珠 (17)</span><span>魏翠珍 (19)</span><span>林靜宜 (20)</span>
+                <span>方淑儀 (22)</span><span>周裕宸 (22)</span><span>呂睿杰 (23)</span>
+                <span>傅幼斌 (28)</span><span>黃李玉枝 (31)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 消息 6: 獎學金得獎名單 -->
+          <div class="news-card searchable highlight-gold">
+            <div class="news-number"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="news-content">
+              <h3 class="news-title">主日崇拜頒發學生獎學金</h3>
+              <p>今天（10月18日）主日崇拜中頒發獎學金，恭喜得獎同學：</p>
+              <div class="award-category">
+                <span class="award-subtitle"><i class="fa-solid fa-star"></i> 成績優良獎：</span>
+                <div class="names-row">
+                  <span class="name-chip">張艾立</span>
+                  <span class="name-chip">周裕恩</span>
+                  <span class="name-chip">張敬侑</span>
+                  <span class="name-chip">曾義謙</span>
+                  <span class="name-chip">李奇勁</span>
+                  <span class="name-chip">金宣愛</span>
+                  <span class="name-chip">李侒倫</span>
+                  <span class="name-chip">金宣恩</span>
+                </div>
+              </div>
+              <div class="award-category">
+                <span class="award-subtitle"><i class="fa-solid fa-arrow-trend-up"></i> 成績進步獎：</span>
+                <div class="names-row">
+                  <span class="name-chip chip-gold">李惇育</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 消息 7: 秋季大掃除 -->
+          <div class="news-card searchable">
+            <div class="news-number">07</div>
+            <div class="news-content">
+              <h3 class="news-title">全教會秋季大掃除與愛心便當</h3>
+              <p>今天（10月18日）主日崇拜後，將進行全教會秋季大掃除，邀請弟兄姊妹們共襄盛舉，齊來清掃會堂。打掃後有為參與的弟兄姊妹們預備美味便當，請至<strong>副堂領取</strong>。</p>
+              <div class="news-tag"><i class="fa-solid fa-broom"></i> 大掃除與愛宴</div>
+            </div>
+          </div>
+
+          <!-- 消息 8: 詩班練唱 -->
+          <div class="news-card searchable">
+            <div class="news-number">08</div>
+            <div class="news-content">
+              <h3 class="news-title">詩班練唱與獻詩邀請</h3>
+              <p>教會詩班於今天（10月18日）主日崇拜後練唱詩歌<strong>《親愛耶穌》</strong>，並在下週日（10月25日）主日崇拜時獻詩，誠摯邀請弟兄姊妹踴躍參加詩班練唱！</p>
+              <div class="news-tag"><i class="fa-solid fa-guitar"></i> 詩班獻詩</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= SECTION: 禱告事項 (PRAYER) ================= -->
+      <section id="section-prayer" class="tab-pane">
+        <div class="section-banner indigo">
+          <div class="banner-icon"><i class="fa-solid fa-hands-praying"></i></div>
+          <div>
+            <h2 class="banner-title">禱告代求事項</h2>
+            <p class="banner-sub">義人祈禱所發的力量是大有功效的</p>
+          </div>
+        </div>
+
+        <div class="prayer-instructions">
+          <i class="fa-solid fa-heart-pulse"></i> 點擊每項卡片下方的<strong>「為他代禱」</strong>按鈕，與眾肢體同心向天父祈求。
+        </div>
+
+        <!-- 代禱分類與卡片 -->
+        <div class="prayer-categories">
+
+          <!-- 1. 國際局勢 -->
+          <div class="prayer-card searchable" data-prayer-id="prayer-international">
+            <div class="prayer-header">
+              <div class="prayer-badge badge-world"><i class="fa-solid fa-earth-americas"></i> 國際局勢代禱</div>
+              <span class="prayer-counter" id="count-prayer-international">12 人已代禱</span>
+            </div>
+            <div class="prayer-body">
+              <div class="sub-prayer-item">
+                <span class="num-bullet">①</span>
+                <div>
+                  <strong>中東和平代禱：</strong>
+                  <p>美以 10 月 15 日磋商對伊朗新打擊預案，美媒稱美軍考慮動用炸彈之母轟炸核與能源設施；荷莫茲關閉致肥料短缺恐引發糧食危機。求主伸手攔阻大戰升級，賜下和平轉機。</p>
+                </div>
+              </div>
+              <div class="sub-prayer-item">
+                <span class="num-bullet">②</span>
+                <div>
+                  <strong>俄烏戰事止息：</strong>
+                  <p>俄軍空襲基洛夫格勒、敖德薩、基輔逾 10 小時，平民死傷慘重。求主止息對能源與平民的報復攻擊，親自保守無辜百姓，開闢和平出路。</p>
+                </div>
+              </div>
+            </div>
+            <div class="prayer-action-row">
+              <button class="pray-btn" onclick="triggerPrayer('prayer-international', this)">
+                <i class="fa-solid fa-hands-praying"></i> <span>我已同心代禱</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 2. 健康肢體 -->
+          <div class="prayer-card searchable" data-prayer-id="prayer-health">
+            <div class="prayer-header">
+              <div class="prayer-badge badge-health"><i class="fa-solid fa-heart-circle-bolt"></i> 身體健康與醫治</div>
+              <span class="prayer-counter" id="count-prayer-health">18 人已代禱</span>
+            </div>
+            <div class="prayer-body">
+              <div class="sub-prayer-item">
+                <span class="num-bullet">①</span>
+                <div>
+                  <strong>劉時傑弟兄（憲萍姊妹女婿）：</strong>
+                  <p>將於 <strong>10 月 29 日</strong>接受鼻中隔彎曲手術，求主保守手術一切順利平安，術後早日康復。</p>
+                </div>
+              </div>
+              <div class="sub-prayer-item">
+                <span class="num-bullet">②</span>
+                <div>
+                  <strong>苑玲姊妹：</strong>
+                  <p>膝關節積水已多日，請弟兄姊妹同心關懷代禱，求神親自醫治軟弱膝蓋，早日恢復行走力氣。</p>
+                </div>
+              </div>
+              <div class="sub-prayer-item">
+                <span class="num-bullet">③</span>
+                <div>
+                  <strong>呂秋娥女士（慕道友）：</strong>
+                  <p>罹患乳癌，全身疼痛無力，心中有意願相信耶穌。求主的慈愛與救恩臨到她，醫治減輕病痛，得著永生平安。</p>
+                </div>
+              </div>
+              <div class="sub-prayer-item">
+                <span class="num-bullet">④</span>
+                <div>
+                  <strong>清美姊妹：</strong>
+                  <p>最近因暈眩，在五福公園晨運時跌坐數次。求主賜下身心靈健壯，行走得力，出入蒙神庇護。</p>
+                </div>
+              </div>
+            </div>
+            <div class="prayer-action-row">
+              <button class="pray-btn" onclick="triggerPrayer('prayer-health', this)">
+                <i class="fa-solid fa-hands-praying"></i> <span>求神施恩醫治</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. 教會事工 -->
+          <div class="prayer-card searchable" data-prayer-id="prayer-church">
+            <div class="prayer-header">
+              <div class="prayer-badge badge-church"><i class="fa-solid fa-church"></i> 教會牧養與聖工</div>
+              <span class="prayer-counter" id="count-prayer-church">15 人已代禱</span>
+            </div>
+            <div class="prayer-body">
+              <div class="sub-prayer-item">
+                <span class="num-bullet">①</span>
+                <div>
+                  <strong>聘請學生傳道：</strong>
+                  <p>教會聘牧小組目前正在聘請學生傳道，請為尋得忠心服事、具牧養負擔的合適人選禱告。</p>
+                </div>
+              </div>
+              <div class="sub-prayer-item">
+                <span class="num-bullet">②</span>
+                <div>
+                  <strong>續任傳道人：</strong>
+                  <p>請為未來續任傳道人的聘請進展與牧者身心靈健壯關懷代禱。</p>
+                </div>
+              </div>
+              <div class="sub-prayer-item">
+                <span class="num-bullet">③</span>
+                <div>
+                  <strong>十月份主日領會及講員：</strong>
+                  <p>為 <strong>10 月 25 日</strong>主日服事同工代禱：領會金振群弟兄、講員江茂松牧師，求聖靈膏抹信息。</p>
+                </div>
+              </div>
+            </div>
+            <div class="prayer-action-row">
+              <button class="pray-btn" onclick="triggerPrayer('prayer-church', this)">
+                <i class="fa-solid fa-hands-praying"></i> <span>為教會忠心代禱</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 4. 教育就業 -->
+          <div class="prayer-card searchable" data-prayer-id="prayer-edu">
+            <div class="prayer-header">
+              <div class="prayer-badge badge-edu"><i class="fa-solid fa-graduation-cap"></i> 青年求學與就業</div>
+              <span class="prayer-counter" id="count-prayer-edu">14 人已代禱</span>
+            </div>
+            <div class="prayer-body">
+              <div class="sub-prayer-item">
+                <span class="num-bullet">①</span>
+                <div>
+                  <strong>忻慧姊妹紐約研習：</strong>
+                  <p>獲教育部青年署補助，於 <strong>10月13日～11月5日</strong>赴紐約研習音樂劇推廣及教學融入。求主保守出入平安、生活豐盛，返台後預備合適工作機會。</p>
+                </div>
+              </div>
+              <div class="sub-prayer-item">
+                <span class="num-bullet">②</span>
+                <div>
+                  <strong>高中應屆考生學測：</strong>
+                  <p>為高三生<strong>奇勁、鍾羽、念恩、祖岑、鍾昀軒</strong>參加明年學測（1月22-24日）禱告，賜下專注與智慧的心。</p>
+                </div>
+              </div>
+              <div class="sub-prayer-item">
+                <span class="num-bullet">③</span>
+                <div>
+                  <strong>大學應屆畢業生：</strong>
+                  <p>為<strong>宣愛、以諾、傅興、奇叡、敬翔、宇謙</strong>未來的就業與升學代禱；宣愛將於明年 6月13-14日參加警察特考，求神引領前程。</p>
+                </div>
+              </div>
+            </div>
+            <div class="prayer-action-row">
+              <button class="pray-btn" onclick="triggerPrayer('prayer-edu', this)">
+                <i class="fa-solid fa-hands-praying"></i> <span>願主賜福前程</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 5. 兵役 -->
+          <div class="prayer-card searchable" data-prayer-id="prayer-military">
+            <div class="prayer-header">
+              <div class="prayer-badge badge-military"><i class="fa-solid fa-shield-halved"></i> 弟兄服兵役平安</div>
+              <span class="prayer-counter" id="count-prayer-military">16 人已代禱</span>
+            </div>
+            <div class="prayer-body">
+              <div class="sub-prayer-item">
+                <span class="num-bullet"><i class="fa-solid fa-person-military-pointing"></i></span>
+                <div>
+                  <strong>金宣恩弟兄新兵訓練：</strong>
+                  <p>於 <strong>10月7日～11月6日</strong>在成功嶺訓練中心接受新兵入伍訓練，結訓後服五個月替代役。請為軍中適應、平安健康，以及能分發至合適替代役單位關懷代禱。</p>
+                </div>
+              </div>
+            </div>
+            <div class="prayer-action-row">
+              <button class="pray-btn" onclick="triggerPrayer('prayer-military', this)">
+                <i class="fa-solid fa-hands-praying"></i> <span>祈求出入平安</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= SECTION: 服事與聚會 (ROSTER & GATHERING) ================= -->
+      <section id="section-roster" class="tab-pane">
+        <div class="section-banner teal">
+          <div class="banner-icon"><i class="fa-solid fa-users"></i></div>
+          <div>
+            <h2 class="banner-title">主日服事與聚會</h2>
+            <p class="banner-sub">各人要照所得的恩賜彼此服事</p>
+          </div>
+        </div>
+
+        <!-- 服事輪值切換開關 (本週 10/18 vs 下週 10/25) -->
+        <div class="roster-switch-container">
+          <button id="btnWeekThis" class="roster-toggle-btn active" onclick="switchRosterWeek('this')">
+            <i class="fa-regular fa-calendar-check"></i> 本週 (10.18)
+          </button>
+          <button id="btnWeekNext" class="roster-toggle-btn" onclick="switchRosterWeek('next')">
+            <i class="fa-regular fa-calendar-plus"></i> 下週 (10.25)
+          </button>
+        </div>
+
+        <!-- 本週服事名單 (10.18) -->
+        <div id="rosterThisWeek" class="roster-view active">
+          <div class="roster-card">
+            <div class="roster-grid">
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-microphone"></i> 講員</span>
+                <span class="role-names highlight-name">葉文漢 牧師</span>
+              </div>
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-user-check"></i> 司會</span>
+                <span class="role-names">臧自強 弟兄</span>
+              </div>
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-music"></i> 司樂</span>
+                <span class="role-names">彭鈴玉、馬浥辰</span>
+              </div>
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-guitar"></i> 陪唱</span>
+                <span class="role-names">謝琇婷、金宣愛、傅興</span>
+              </div>
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-sliders"></i> 投影音控</span>
+                <span class="role-names">胡夢嵩、臧美倫</span>
+              </div>
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-door-open"></i> 招待</span>
+                <span class="role-names">金振群、曾繁萍、吳連碧</span>
+              </div>
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-wine-glass"></i> 聖餐</span>
+                <span class="role-names">謝琇婷、金宣愛、傅興</span>
+              </div>
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-hand-holding-dollar"></i> 司獻</span>
+                <span class="role-names">黃穗蓉、臧自強、馬浥辰</span>
+              </div>
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-spa"></i> 插花服事</span>
+                <span class="role-names">王樂禾</span>
+              </div>
+              <div class="roster-cell searchable cell-full">
+                <span class="role-title"><i class="fa-solid fa-children"></i> 兒童主日學 (10/18)</span>
+                <span class="role-names">羅偉榕 老師 ＋ 楊素英 老師</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 下週服事名單 (10.25) -->
+        <div id="rosterNextWeek" class="roster-view">
+          <div class="roster-card">
+            <div class="roster-grid">
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-microphone"></i> 講員</span>
+                <span class="role-names highlight-name">江茂松 牧師</span>
+              </div>
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-user-check"></i> 司會</span>
+                <span class="role-names">金振群 弟兄</span>
+              </div>
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-music"></i> 司樂</span>
+                <span class="role-names">曾繁萍、魏恩予</span>
+              </div>
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-guitar"></i> 陪唱</span>
+                <span class="role-names">王富次、阮卓蘭、臧美倫</span>
+              </div>
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-sliders"></i> 投影音控</span>
+                <span class="role-names">張永裕、鄒佳芬</span>
+              </div>
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-door-open"></i> 招待</span>
+                <span class="role-names">魏紹霞、吳秀惠、涂秀娟</span>
+              </div>
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-wine-glass"></i> 聖餐</span>
+                <span class="role-names">王富次、阮卓蘭、臧美倫</span>
+              </div>
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-hand-holding-dollar"></i> 司獻</span>
+                <span class="role-names">李秀娟、金振群、魏恩予</span>
+              </div>
+              <div class="roster-cell searchable">
+                <span class="role-title"><i class="fa-solid fa-spa"></i> 插花服事</span>
+                <span class="role-names">王樂禾</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 聚會時間表卡片 -->
+        <div class="info-card mt-4">
+          <div class="info-card-header">
+            <div class="header-icon-box orange"><i class="fa-solid fa-clock"></i></div>
+            <div>
+              <span class="section-tag">崇拜與團契</span>
+              <h3 class="card-title">主日與週間聚會時間</h3>
+            </div>
+          </div>
+
+          <div class="schedule-table-wrap">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>時間</th>
+                  <th>聚會類別</th>
+                  <th>地點</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="searchable">
+                  <td>主日 09:30-11:00</td>
+                  <td><strong>主日崇拜聚會</strong></td>
+                  <td><span class="loc-badge">正堂</span></td>
+                </tr>
+                <tr class="searchable">
+                  <td>主日 09:30-11:00</td>
+                  <td><strong>兒童主日學</strong></td>
+                  <td><span class="loc-badge">副堂三樓</span></td>
+                </tr>
+                <tr class="searchable">
+                  <td>週六 17:30-18:30</td>
+                  <td><strong>守望禱告會</strong></td>
+                  <td><span class="loc-badge">正堂</span></td>
+                </tr>
+                <tr class="searchable">
+                  <td>一至六 07:30-08:30</td>
+                  <td><strong>晨更聚會</strong></td>
+                  <td><span class="loc-badge">正堂</span></td>
+                </tr>
+                <tr class="searchable">
+                  <td>每月第二週四 09:30-11:00</td>
+                  <td>樂齡樂活團契</td>
+                  <td><span class="loc-badge">副堂一樓</span></td>
+                </tr>
+                <tr class="searchable">
+                  <td>每週三 09:30-11:00</td>
+                  <td>雅歌團契</td>
+                  <td><span class="loc-badge">副堂一樓</span></td>
+                </tr>
+                <tr class="searchable">
+                  <td>每週五 19:30-21:00</td>
+                  <td>愛的小家</td>
+                  <td><span class="loc-badge">副堂一樓</span></td>
+                </tr>
+                <tr class="searchable">
+                  <td>每週六 19:30-21:00</td>
+                  <td>加恩小家</td>
+                  <td><span class="loc-badge">副堂二樓</span></td>
+                </tr>
+                <tr class="searchable">
+                  <td>每週六 19:30-21:00</td>
+                  <td>青少年團契</td>
+                  <td><span class="loc-badge">副堂一樓</span></td>
+                </tr>
+                <tr class="searchable">
+                  <td>每週六 19:30-21:00</td>
+                  <td>大專團契</td>
+                  <td><span class="loc-badge">正堂</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ================= SECTION: 奉獻與聯絡資訊 (OFFERING & INFO) ================= -->
+      <section id="section-info" class="tab-pane">
+        <div class="section-banner gold">
+          <div class="banner-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+          <div>
+            <h2 class="banner-title">奉獻徵信與教會資訊</h2>
+            <p class="banner-sub">主必照祂豐盛的榮耀賜福給甘心樂意奉獻的人</p>
+          </div>
+        </div>
+
+        <!-- 奉獻徵信卡片 (10月11日奉獻明細) -->
+        <div class="info-card searchable">
+          <div class="info-card-header">
+            <div class="header-icon-box gold"><i class="fa-solid fa-coins"></i></div>
+            <div>
+              <span class="section-tag">財務徵信</span>
+              <h3 class="card-title">10 月 11 日 奉獻／收入明細</h3>
+            </div>
+          </div>
+
+          <div class="offering-summary-pills">
+            <div class="sum-pill">
+              <span class="sum-title">本週主日奉獻合計</span>
+              <span class="sum-amount">NT$ 225,800</span>
+            </div>
+            <div class="sum-pill highlight-gold">
+              <span class="sum-title">本月奉獻累計</span>
+              <span class="sum-amount">NT$ 312,000</span>
+            </div>
+          </div>
+
+          <!-- 十一奉獻名細收合與查詢 -->
+          <div class="offering-detail-wrap">
+            <div class="offering-table-header">
+              <span>十一奉獻名細 (按編號查詢)</span>
+              <span class="tag">十一奉獻小計: 222,200 元</span>
+            </div>
+            <div class="offering-grid">
+              <div class="offering-chip"><span>編號 1</span><strong>$4,200</strong></div>
+              <div class="offering-chip"><span>編號 4</span><strong>$27,500</strong></div>
+              <div class="offering-chip"><span>編號 8</span><strong>$2,500</strong></div>
+              <div class="offering-chip"><span>編號 16</span><strong>$1,000</strong></div>
+              <div class="offering-chip"><span>編號 51</span><strong>$3,000</strong></div>
+              <div class="offering-chip"><span>編號 60</span><strong>$3,000</strong></div>
+              <div class="offering-chip"><span>編號 61</span><strong>$3,000</strong></div>
+              <div class="offering-chip"><span>編號 67</span><strong>$8,000</strong></div>
+              <div class="offering-chip"><span>編號 69</span><strong>$4,500</strong></div>
+              <div class="offering-chip"><span>編號 93</span><strong>$3,500</strong></div>
+              <div class="offering-chip"><span>編號 96</span><strong>$2,000</strong></div>
+              <div class="offering-chip highlight"><span>主知名 1</span><strong>$60,000</strong></div>
+              <div class="offering-chip highlight"><span>主知名 2</span><strong>$100,000</strong></div>
+              <div class="offering-chip note"><span>主日奉獻</span><strong>$3,600</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 教會基本資料與同工卡片 -->
+        <div class="church-profile-card">
+          <div class="profile-header">
+            <div class="logo-circle large">
+              <i class="fa-solid fa-church"></i>
+            </div>
+            <div>
+              <h3 class="profile-name">埔心基督徒聚會處</h3>
+              <p class="profile-motto">《全心倚賴耶和華、一切事上認定主》</p>
+            </div>
+          </div>
+
+          <div class="profile-contact-list">
+            <div class="p-item searchable">
+              <i class="fa-solid fa-location-dot"></i>
+              <div class="p-info">
+                <span class="p-label">會堂地址</span>
+                <span class="p-val">桃園市楊梅區埔心文化街177號</span>
+              </div>
+              <a href="https://maps.google.com/?q=桃園市楊梅區埔心文化街177號" target="_blank" class="p-btn">
+                <i class="fa-solid fa-diamond-turn-right"></i>
+              </a>
+            </div>
+
+            <div class="p-item searchable">
+              <i class="fa-solid fa-phone"></i>
+              <div class="p-info">
+                <span class="p-label">教會電話</span>
+                <span class="p-val">03-482-3543 • 03-431-3642 • 03-481-7233</span>
+              </div>
+              <a href="tel:034823543" class="p-btn"><i class="fa-solid fa-phone"></i></a>
+            </div>
+
+            <div class="p-item searchable">
+              <i class="fa-solid fa-envelope"></i>
+              <div class="p-info">
+                <span class="p-label">電子信箱 (E-Mail)</span>
+                <span class="p-val">ps.church@msa.hinet.net</span>
+              </div>
+              <a href="mailto:ps.church@msa.hinet.net" class="p-btn"><i class="fa-solid fa-paper-plane"></i></a>
+            </div>
+
+            <div class="p-item searchable">
+              <i class="fa-solid fa-user-shield"></i>
+              <div class="p-info">
+                <span class="p-label">教牧與同工團隊</span>
+                <span class="p-val">
+                  江茂松 牧師：<a href="tel:0916722573">0916-722573</a><br>
+                  袁梅英 師母：<a href="tel:0916645095">0916-645095</a><br>
+                  魏紹霞 長老：<a href="tel:0910828917">0910-828917</a>
+                </span>
+              </div>
+            </div>
+
+            <div class="p-item searchable">
+              <i class="fa-solid fa-receipt"></i>
+              <div class="p-info">
+                <span class="p-label">教會統一編號</span>
+                <span class="p-val">74993779</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Bottom Sticky App Navigation Bar (專為手機直式版面設計) -->
+    <nav class="bottom-nav">
+      <button class="nav-tab active" data-tab="home" onclick="switchTab('home')">
+        <i class="fa-solid fa-house"></i>
+        <span>首頁</span>
+      </button>
+      <button class="nav-tab" data-tab="worship" onclick="switchTab('worship')">
+        <i class="fa-solid fa-book-bible"></i>
+        <span>崇拜程序</span>
+      </button>
+      <button class="nav-tab" data-tab="news" onclick="switchTab('news')">
+        <i class="fa-solid fa-bullhorn"></i>
+        <span>教會消息</span>
+      </button>
+      <button class="nav-tab" data-tab="prayer" onclick="switchTab('prayer')">
+        <i class="fa-solid fa-hands-praying"></i>
+        <span>代禱事項</span>
+      </button>
+      <button class="nav-tab" data-tab="roster" onclick="switchTab('roster')">
+        <i class="fa-solid fa-calendar-days"></i>
+        <span>服事聚會</span>
+      </button>
+      <button class="nav-tab" data-tab="info" onclick="switchTab('info')">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>資訊徵信</span>
+      </button>
+    </nav>
+
+    <!-- Toast Notification Overlay -->
+    <div id="appToast" class="toast hidden">
+      <i class="fa-solid fa-circle-check"></i>
+      <span id="toastMsg">通知訊息</span>
+    </div>
+
+    <!-- Scripture Reading Modal (經文彈跳視窗) -->
+    <div id="scriptureModal" class="modal-overlay hidden" onclick="toggleScriptureModal(false)">
+      <div class="modal-card" onclick="event.stopPropagation()">
+        <div class="modal-header">
+          <h3><i class="fa-solid fa-bible"></i> 箴言第四章 20～23 節</h3>
+          <button class="modal-close" onclick="toggleScriptureModal(false)">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p class="modal-verse">
+            <span class="v-num">20</span> 我兒，要留心聽我的言詞，側耳聽我的話語，<br>
+            <span class="v-num">21</span> 都不可離你的眼目，要存記在你心裡。<br>
+            <span class="v-num">22</span> 因為尋得祂的，就得了生命，又得了醫全體的良藥。<br>
+            <span class="v-num">23</span> <strong>你要保守你心，勝過保守一切，因為一生的果效是由心發出。</strong>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-primary" onclick="toggleScriptureModal(false)">我已讀過，願神賜福</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

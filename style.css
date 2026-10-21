@@ -1,0 +1,1782 @@
+/* ==========================================================================
+   埔心基督徒聚會處週報 - 手機直式互動網頁樣式 (style.css)
+   ========================================================================== */
+
+:root {
+  /* 主色調：溫暖金黃、穩重靛藍、活力翡翠綠、溫馨玫瑰紅、純淨底色 */
+  --primary: #d97706;          /* 暖金琥珀 */
+  --primary-light: #fef3c7;    /* 淺金底色 */
+  --primary-dark: #b45309;
+  
+  --secondary: #4338ca;        /* 靈性典雅靛藍 */
+  --secondary-light: #e0e7ff;
+  
+  --success: #059669;          /* 生機翡翠綠 */
+  --success-light: #d1fae5;
+  
+  --accent-rose: #e11d48;      /* 喜樂玫瑰 */
+  --accent-rose-light: #ffe4e6;
+  
+  --accent-teal: #0d9488;      /* 清新湖水綠 */
+  --accent-teal-light: #ccfbf1;
+  
+  --bg-page: #f8fafc;          /* 頁面背景 */
+  --bg-mobile: #fffdfa;        /* 手機主要容器暖白背景 */
+  --bg-card: #ffffff;          /* 卡片背景 */
+  
+  --text-main: #1e293b;        /* 主文字 (深灰藍，對比度高好閱讀) */
+  --text-muted: #64748b;       /* 次要說明 */
+  --text-light: #94a3b8;
+  
+  --border-color: #f1f5f9;
+  --border-subtle: #e2e8f0;
+  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px -1px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.08), 0 4px 10px -2px rgba(0, 0, 0, 0.03);
+  --shadow-float: 0 8px 30px rgba(217, 119, 6, 0.18);
+  
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 26px;
+  --radius-full: 9999px;
+  
+  --safe-bottom: env(safe-area-inset-bottom, 16px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+
+/* ---------------- 字體大小分級 (利於長輩與一般信徒閱讀) ---------------- */
+body.font-size-sm {
+  --base-size: 15px;
+  --title-size: 1.25rem;
+  --h1-size: 1.45rem;
+  --lead-size: 1rem;
+}
+
+body.font-size-md {
+  --base-size: 17.5px;
+  --title-size: 1.4rem;
+  --h1-size: 1.6rem;
+  --lead-size: 1.15rem;
+}
+
+body.font-size-lg {
+  --base-size: 20px;
+  --title-size: 1.6rem;
+  --h1-size: 1.85rem;
+  --lead-size: 1.3rem;
+}
+
+/* 基礎重置 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: #f1f5f9;
+  font-family: 'Noto Sans TC', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  font-size: var(--base-size);
+  color: var(--text-main);
+  line-height: 1.65;
+  letter-spacing: 0.02em;
+  overflow-x: hidden;
+}
+
+/* ---------------- 手機專用直式版面容器 ---------------- */
+/* 在桌面螢幕居中模擬手機直式螢幕，在手機上全螢幕貼合 */
+.mobile-wrapper {
+  max-width: 500px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background-color: var(--bg-mobile);
+  position: relative;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: calc(75px + var(--safe-bottom));
+}
+
+/* ---------------- 頂部固定 Header ---------------- */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 253, 250, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  padding: 10px 16px 8px 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.church-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 3px 8px rgba(217, 119, 6, 0.3);
+  flex-shrink: 0;
+}
+
+.logo-circle.large {
+  width: 52px;
+  height: 52px;
+  font-size: 1.5rem;
+}
+
+.church-name {
+  font-family: 'Noto Serif TC', serif;
+  font-size: var(--title-size);
+  font-weight: 900;
+  color: #78350f;
+  line-height: 1.2;
+}
+
+.church-tagline {
+  font-size: 0.78rem;
+  color: var(--primary-dark);
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.action-btn {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: var(--text-muted);
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.action-btn:active {
+  transform: scale(0.92);
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+/* 字體調整下拉選單 */
+.font-size-switcher {
+  position: relative;
+}
+
+.font-dropdown {
+  position: absolute;
+  top: 46px;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 110px;
+  z-index: 60;
+  animation: fadeInDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.font-dropdown.hidden {
+  display: none;
+}
+
+.font-dropdown button {
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-align: left;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.font-dropdown button:hover,
+.font-dropdown button.active {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+/* 期數標籤與搜尋觸發按鈕 */
+.bulletin-meta-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.issue-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--secondary-light);
+  color: var(--secondary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.search-trigger-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.search-trigger-btn:active {
+  background: #e2e8f0;
+}
+
+/* 檢索輸入欄 */
+.search-container {
+  margin-top: 8px;
+  animation: fadeIn 0.2s ease;
+}
+
+.search-container.hidden {
+  display: none;
+}
+
+.search-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--primary);
+  font-size: 0.95rem;
+}
+
+.search-input-wrap input {
+  width: 100%;
+  padding: 10px 38px 10px 36px;
+  font-size: 0.95rem;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--primary);
+  outline: none;
+  background: #ffffff;
+  color: var(--text-main);
+  box-shadow: 0 0 10px rgba(217, 119, 6, 0.15);
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.search-clear-btn.hidden {
+  display: none;
+}
+
+.search-stats {
+  font-size: 0.82rem;
+  color: var(--primary-dark);
+  font-weight: 600;
+  padding: 4px 8px 0 8px;
+}
+
+.search-stats.hidden {
+  display: none;
+}
+
+/* 搜尋結果高亮 */
+mark.search-highlight {
+  background-color: #fef08a;
+  color: #854d0e;
+  padding: 1px 3px;
+  border-radius: 3px;
+  font-weight: 700;
+}
+
+/* ---------------- 內容主區域 ---------------- */
+.app-main {
+  padding: 14px 14px 24px 14px;
+  flex: 1;
+}
+
+.tab-pane {
+  display: none;
+  animation: slideFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+/* 頂部分類 Banner */
+.section-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #78350f;
+  padding: 14px 16px;
+  border-radius: var(--radius-lg);
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.section-banner.green {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  color: #064e3b;
+}
+
+.section-banner.indigo {
+  background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+  color: #312e81;
+}
+
+.section-banner.teal {
+  background: linear-gradient(135deg, #ccfbf1, #99f6e4);
+  color: #134e4a;
+}
+
+.section-banner.gold {
+  background: linear-gradient(135deg, #fef08a, #fde047);
+  color: #713f12;
+}
+
+.banner-icon {
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.banner-title {
+  font-size: var(--title-size);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.banner-sub {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+/* ---------------- 通用卡片設計 ---------------- */
+.hero-card,
+.verse-card,
+.info-card,
+.birthday-card,
+.notice-card,
+.contact-quick-card,
+.church-profile-card,
+.roster-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 18px 16px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-interactive:active {
+  transform: scale(0.99);
+}
+
+/* 迎賓 Hero 卡片 */
+.hero-card {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 60%, #fed7aa 100%);
+  border: 1px solid #fde68a;
+  box-shadow: var(--shadow-float);
+  padding: 24px 18px;
+  text-align: center;
+}
+
+.hero-bg-shapes .shape {
+  position: absolute;
+  border-radius: var(--radius-full);
+  opacity: 0.35;
+  filter: blur(25px);
+  pointer-events: none;
+}
+
+.hero-bg-shapes .shape-1 {
+  width: 140px;
+  height: 140px;
+  background: #f59e0b;
+  top: -30px;
+  right: -20px;
+}
+
+.hero-bg-shapes .shape-2 {
+  width: 120px;
+  height: 120px;
+  background: #fbbf24;
+  bottom: -20px;
+  left: -20px;
+}
+
+.badge-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(217, 119, 6, 0.15);
+  color: var(--primary-dark);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: 8px;
+}
+
+.hero-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: var(--h1-size);
+  font-weight: 900;
+  color: #78350f;
+  margin-bottom: 4px;
+  letter-spacing: 0.04em;
+}
+
+.hero-subtitle {
+  font-size: 0.95rem;
+  color: #92400e;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.hero-quick-links {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.quick-pill {
+  background: #ffffff;
+  border: 1px solid #fcd34d;
+  color: #92400e;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.quick-pill:active {
+  background: #fef3c7;
+  transform: scale(0.96);
+}
+
+/* ---------------- 本週金句 (Verse Card) ---------------- */
+.verse-card {
+  background: linear-gradient(145deg, #ffffff 0%, #fffbeb 100%);
+  border: 2px solid #fde68a;
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.14);
+}
+
+.card-header-styled {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.header-icon-box {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.header-icon-box.gold {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.header-icon-box.blue {
+  background: #e0e7ff;
+  color: #4338ca;
+}
+
+.header-icon-box.pink {
+  background: #ffe4e6;
+  color: #e11d48;
+}
+
+.header-icon-box.orange {
+  background: #ffedd5;
+  color: #ea580c;
+}
+
+.section-tag {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: var(--primary-dark);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  display: block;
+}
+
+.card-title {
+  font-size: var(--title-size);
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.25;
+}
+
+.chime-btn {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  color: #b45309;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.chime-btn:active {
+  background: #fde68a;
+  transform: scale(0.95);
+}
+
+.verse-quote-box {
+  background: #ffffff;
+  border-left: 4px solid #f59e0b;
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.verse-text {
+  font-family: 'Noto Serif TC', serif;
+  font-size: var(--lead-size);
+  font-weight: 700;
+  color: #78350f;
+  line-height: 1.7;
+}
+
+.verse-source {
+  margin-top: 8px;
+  text-align: right;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #d97706;
+}
+
+.verse-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-action-light {
+  flex: 1;
+  min-width: 140px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: var(--text-main);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-action-light:active {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+/* 今日特別提醒通知 */
+.notice-card {
+  display: flex;
+  gap: 12px;
+  background: #eff6ff;
+  border-left: 4px solid #3b82f6;
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+}
+
+.notice-icon {
+  font-size: 1.3rem;
+  color: #2563eb;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.notice-body strong {
+  color: #1e40af;
+  font-size: 0.98rem;
+}
+
+.notice-body p {
+  font-size: 0.9rem;
+  color: #1e3a8a;
+  margin-top: 2px;
+}
+
+/* 講道預覽速報 */
+.sermon-meta {
+  background: #f8fafc;
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.95rem;
+}
+
+.sermon-meta div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sermon-meta i {
+  color: var(--secondary);
+}
+
+.sermon-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+/* 壽星祝福卡片 */
+.birthday-card {
+  background: linear-gradient(145deg, #ffffff 0%, #fff1f2 100%);
+  border: 1px solid #fecdd3;
+}
+
+.birthday-btn {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffe4e6;
+  border: 1px solid #fda4af;
+  color: #be123c;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.birthday-btn:active {
+  transform: scale(0.94);
+  background: #fda4af;
+  color: #881337;
+}
+
+.birthday-lead {
+  font-size: 0.92rem;
+  color: #9f1239;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.birthday-names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.birthday-pill {
+  background: #ffffff;
+  border: 1px solid #fbcfe8;
+  color: #831843;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.birthday-pill.highlight-today {
+  background: #fdf2f8;
+  border: 1.5px solid #db2777;
+  color: #9d174d;
+  font-weight: 800;
+}
+
+/* 聯絡資訊卡片 */
+.contact-quick-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.contact-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 0.92rem;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+.badge-link {
+  margin-left: auto;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: var(--secondary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* ---------------- 崇拜程序時間軸 (Timeline) ---------------- */
+.worship-speaker-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.speaker-chip {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 8px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.speaker-chip .label {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.speaker-chip .val {
+  font-size: 0.95rem;
+  color: var(--primary-dark);
+}
+
+.timeline-container {
+  position: relative;
+  padding-left: 28px;
+}
+
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 13px;
+  top: 10px;
+  bottom: 20px;
+  width: 2px;
+  background: #cbd5e1;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -28px;
+  top: 2px;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: #ffffff;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  font-size: 0.82rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.timeline-item.highlight-item .timeline-marker {
+  background: #4338ca;
+  border-color: #4338ca;
+  color: #ffffff;
+}
+
+.timeline-item.special-highlight .timeline-marker {
+  background: #d97706;
+  border-color: #d97706;
+  color: #ffffff;
+}
+
+.timeline-content {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.item-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.item-role {
+  font-size: 0.8rem;
+  background: #f1f5f9;
+  color: var(--text-muted);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+}
+
+.item-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.hymn-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.hymn-tag {
+  background: #eef2ff;
+  border-left: 3px solid #6366f1;
+  color: #3730a3;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.sermon-badge-title {
+  display: inline-block;
+  background: #fef3c7;
+  color: #92400e;
+  font-family: 'Noto Serif TC', serif;
+  font-size: 1.15rem;
+  font-weight: 900;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  margin: 6px 0;
+}
+
+.expand-verse-btn {
+  margin-top: 8px;
+  background: none;
+  border: 1px dashed #cbd5e1;
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  color: var(--primary-dark);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  justify-content: center;
+}
+
+.accordion-content {
+  margin-top: 8px;
+  padding: 10px 12px;
+  background: #f8fafc;
+  border-radius: var(--radius-md);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  animation: fadeIn 0.2s ease;
+}
+
+.accordion-content.hidden {
+  display: none;
+}
+
+.lords-prayer-card {
+  font-family: 'Noto Serif TC', serif;
+  color: #1e3a8a;
+  background: #eff6ff;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid #bfdbfe;
+  line-height: 1.8;
+}
+
+.award-box {
+  background: #fef9c3;
+  border: 1px solid #fde047;
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  margin-top: 6px;
+}
+
+.award-tag {
+  display: inline-block;
+  background: #ca8a04;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+/* ---------------- 教會消息卡片 ---------------- */
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.news-card {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  border: 1px solid #e2e8f0;
+  padding: 14px;
+  display: flex;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.news-number {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: #f1f5f9;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.news-content {
+  flex: 1;
+}
+
+.news-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.news-content p {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.news-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  margin-top: 8px;
+}
+
+.news-card.highlight-card {
+  border: 1.5px solid #fecdd3;
+  background: #fffdfd;
+}
+
+.news-card.highlight-card .news-number {
+  background: #ffe4e6;
+  color: #e11d48;
+}
+
+.news-pills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.news-pills-wrap span {
+  background: #fff1f2;
+  color: #9f1239;
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.news-card.highlight-gold {
+  border: 1.5px solid #fde68a;
+  background: #fffdf7;
+}
+
+.news-card.highlight-gold .news-number {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.award-category {
+  margin-top: 8px;
+}
+
+.award-subtitle {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 4px;
+}
+
+.names-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.name-chip {
+  background: #f1f5f9;
+  color: var(--text-main);
+  font-size: 0.86rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+.name-chip.chip-gold {
+  background: #fef08a;
+  color: #854d0e;
+  font-weight: 700;
+}
+
+/* ---------------- 代禱事項 (Prayer) ---------------- */
+.prayer-instructions {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  margin-bottom: 14px;
+}
+
+.prayer-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.prayer-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  border: 1px solid #e2e8f0;
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.prayer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.prayer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.86rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.badge-world { background: #fee2e2; color: #991b1b; }
+.badge-health { background: #ecfdf5; color: #065f46; }
+.badge-church { background: #e0e7ff; color: #3730a3; }
+.badge-edu { background: #fef3c7; color: #92400e; }
+.badge-military { background: #f1f5f9; color: #334155; }
+
+.prayer-counter {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.prayer-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.sub-prayer-item {
+  display: flex;
+  gap: 8px;
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.num-bullet {
+  color: var(--primary);
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.prayer-action-row {
+  border-top: 1px dashed #e2e8f0;
+  padding-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pray-btn {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border: none;
+  font-size: 0.92rem;
+  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 10px rgba(217, 119, 6, 0.25);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pray-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(217, 119, 6, 0.2);
+}
+
+.pray-btn.prayed {
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
+}
+
+/* 祈禱飛升動畫浮現特效 */
+.floating-prayer-heart {
+  position: fixed;
+  pointer-events: none;
+  font-size: 1.6rem;
+  color: #e11d48;
+  z-index: 9999;
+  animation: floatUpAndFade 1.2s ease-out forwards;
+}
+
+@keyframes floatUpAndFade {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(0.8);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(-50%, -40px) scale(1.3);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -90px) scale(1);
+  }
+}
+
+/* ---------------- 服事輪值切換與排班 ---------------- */
+.roster-switch-container {
+  display: flex;
+  background: #f1f5f9;
+  border-radius: var(--radius-full);
+  padding: 4px;
+  margin-bottom: 14px;
+  border: 1px solid #e2e8f0;
+}
+
+.roster-toggle-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+}
+
+.roster-toggle-btn.active {
+  background: #ffffff;
+  color: var(--primary-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+.roster-view {
+  display: none;
+}
+
+.roster-view.active {
+  display: block;
+  animation: fadeIn 0.25s ease;
+}
+
+.roster-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.roster-cell {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+}
+
+.roster-cell.cell-full {
+  grid-column: span 2;
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.role-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.role-names {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: block;
+}
+
+.role-names.highlight-name {
+  color: #d97706;
+  font-size: 1.05rem;
+}
+
+/* 聚會時間表表格 */
+.schedule-table-wrap {
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.schedule-table th {
+  background: #f1f5f9;
+  text-align: left;
+  padding: 8px 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.schedule-table td {
+  padding: 10px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.loc-badge {
+  display: inline-block;
+  background: #e2e8f0;
+  color: var(--text-main);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+/* ---------------- 奉獻徵信卡片 ---------------- */
+.offering-summary-pills {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 12px 0 16px 0;
+}
+
+.sum-pill {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 12px;
+  text-align: center;
+}
+
+.sum-pill.highlight-gold {
+  background: #fefce8;
+  border-color: #fef08a;
+}
+
+.sum-title {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.sum-amount {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #b45309;
+}
+
+.offering-detail-wrap {
+  background: #f8fafc;
+  border-radius: var(--radius-md);
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.offering-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.offering-table-header .tag {
+  background: #e2e8f0;
+  color: var(--text-main);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+}
+
+.offering-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.offering-chip {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  padding: 6px 8px;
+  text-align: center;
+}
+
+.offering-chip span {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}
+
+.offering-chip strong {
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+.offering-chip.highlight {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.offering-chip.highlight strong {
+  color: #1d4ed8;
+}
+
+.offering-chip.note {
+  grid-column: span 3;
+  background: #fef3c7;
+  border-color: #fde68a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+}
+
+/* 教會基本資料卡 */
+.church-profile-card {
+  background: #ffffff;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 14px;
+}
+
+.profile-name {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #78350f;
+}
+
+.profile-motto {
+  font-size: 0.85rem;
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.profile-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.p-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.92rem;
+}
+
+.p-item > i {
+  color: var(--primary);
+  font-size: 1.1rem;
+  margin-top: 4px;
+  width: 20px;
+  text-align: center;
+}
+
+.p-info {
+  flex: 1;
+}
+
+.p-label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.p-val {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.p-val a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+.p-btn {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: var(--secondary);
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* ---------------- 底部導覽列 (Sticky Bottom Bar) ---------------- */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px;
+  height: calc(65px + var(--safe-bottom));
+  padding-bottom: var(--safe-bottom);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 50;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.nav-tab {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: var(--text-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 6px 4px;
+  flex: 1;
+  transition: all 0.2s ease;
+}
+
+.nav-tab i {
+  font-size: 1.25rem;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-tab.active {
+  color: var(--primary);
+}
+
+.nav-tab.active i {
+  transform: translateY(-2px) scale(1.1);
+  color: var(--primary);
+}
+
+/* ---------------- Toast 彈跳提示 ---------------- */
+.toast {
+  position: fixed;
+  bottom: calc(80px + var(--safe-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(30, 41, 59, 0.95);
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  z-index: 100;
+  animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.toast.hidden {
+  display: none;
+}
+
+/* ---------------- Modal 彈跳視窗 ---------------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 16px;
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  max-width: 440px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: popIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-header {
+  padding: 16px 20px;
+  background: #fef3c7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #fde68a;
+}
+
+.modal-header h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #78350f;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: #78350f;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-verse {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 1.05rem;
+  line-height: 2;
+  color: var(--text-main);
+}
+
+.v-num {
+  font-size: 0.8rem;
+  color: var(--primary);
+  font-weight: 800;
+  margin-right: 4px;
+}
+
+.modal-footer {
+  padding: 12px 20px 18px 20px;
+  text-align: center;
+}
+
+.btn-primary {
+  width: 100%;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+}
+
+/* ---------------- 關鍵影格動畫 ---------------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
