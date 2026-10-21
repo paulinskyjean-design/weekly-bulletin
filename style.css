@@ -1,40 +1,41 @@
 /* ==========================================================================
-   埔心基督徒聚會處週報 - 手機直式互動網頁樣式 (style.css)
+   埔心基督徒聚會處週報 - 手機直式互動資訊網 (style.css)
+   視覺要求：手機專用直式版面 (最大寬度 480px)、明亮溫暖色彩、大字級無障礙閱讀
    ========================================================================== */
 
 :root {
-  /* 主色調：溫暖金黃、穩重靛藍、活力翡翠綠、溫馨玫瑰紅、純淨底色 */
-  --primary: #d97706;          /* 暖金琥珀 */
-  --primary-light: #fef3c7;    /* 淺金底色 */
-  --primary-dark: #b45309;
+  /* 明亮而色彩豐富的教會視覺系統 */
+  --primary: #d97706;          /* 晨曦暖金琥珀 (主色) */
+  --primary-light: #fef3c7;    /* 淺琥珀金底色 */
+  --primary-dark: #b45309;     /* 深琥珀文字 */
   
-  --secondary: #4338ca;        /* 靈性典雅靛藍 */
-  --secondary-light: #e0e7ff;
+  --secondary: #4338ca;        /* 靈性典雅靛藍 (信息/敬拜) */
+  --secondary-light: #e0e7ff;  /* 淺靛藍標籤 */
   
-  --success: #059669;          /* 生機翡翠綠 */
-  --success-light: #d1fae5;
+  --success: #059669;          /* 生機翡翠綠 (消息/事工) */
+  --success-light: #d1fae5;    /* 淺翡翠綠 */
   
-  --accent-rose: #e11d48;      /* 喜樂玫瑰 */
-  --accent-rose-light: #ffe4e6;
+  --accent-rose: #e11d48;      /* 喜樂玫瑰粉 (壽星/愛心) */
+  --accent-rose-light: #ffe4e6;/* 淺玫瑰粉 */
   
-  --accent-teal: #0d9488;      /* 清新湖水綠 */
+  --accent-teal: #0d9488;      /* 清新湖水綠 (服事/同工) */
   --accent-teal-light: #ccfbf1;
   
-  --bg-page: #f8fafc;          /* 頁面背景 */
-  --bg-mobile: #fffdfa;        /* 手機主要容器暖白背景 */
-  --bg-card: #ffffff;          /* 卡片背景 */
+  --bg-page: #f1f5f9;          /* 外側桌面背景 */
+  --bg-mobile: #fffdfa;        /* 手機主要容器暖白柔和底色 */
+  --bg-card: #ffffff;          /* 內容卡片白色底色 */
   
-  --text-main: #1e293b;        /* 主文字 (深灰藍，對比度高好閱讀) */
-  --text-muted: #64748b;       /* 次要說明 */
+  --text-main: #1e293b;        /* 主文字 (高對比深藍灰，長輩閱讀不吃力) */
+  --text-muted: #475569;       /* 次要說明文字 (清晰可辨) */
   --text-light: #94a3b8;
   
   --border-color: #f1f5f9;
   --border-subtle: #e2e8f0;
   
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 12px -1px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.08), 0 4px 10px -2px rgba(0, 0, 0, 0.03);
-  --shadow-float: 0 8px 30px rgba(217, 119, 6, 0.18);
+  --shadow-md: 0 4px 14px -1px rgba(0, 0, 0, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 10px -2px rgba(0, 0, 0, 0.04);
+  --shadow-float: 0 8px 24px rgba(217, 119, 6, 0.18);
   
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -46,26 +47,26 @@
   --safe-top: env(safe-area-inset-top, 0px);
 }
 
-/* ---------------- 字體大小分級 (利於長輩與一般信徒閱讀) ---------------- */
+/* ---------------- 長輩友善字級分級 (嚴格限制：字體不要太小) ---------------- */
 body.font-size-sm {
-  --base-size: 15px;
-  --title-size: 1.25rem;
-  --h1-size: 1.45rem;
-  --lead-size: 1rem;
+  --base-size: 16px;
+  --title-size: 1.3rem;
+  --h1-size: 1.5rem;
+  --lead-size: 1.05rem;
 }
 
 body.font-size-md {
   --base-size: 17.5px;
-  --title-size: 1.4rem;
-  --h1-size: 1.6rem;
-  --lead-size: 1.15rem;
+  --title-size: 1.42rem;
+  --h1-size: 1.65rem;
+  --lead-size: 1.18rem;
 }
 
 body.font-size-lg {
   --base-size: 20px;
-  --title-size: 1.6rem;
-  --h1-size: 1.85rem;
-  --lead-size: 1.3rem;
+  --title-size: 1.62rem;
+  --h1-size: 1.88rem;
+  --lead-size: 1.32rem;
 }
 
 /* 基礎重置 */
@@ -79,24 +80,23 @@ body.font-size-lg {
 html, body {
   width: 100%;
   height: 100%;
-  background-color: #f1f5f9;
+  background-color: var(--bg-page);
   font-family: 'Noto Sans TC', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   font-size: var(--base-size);
   color: var(--text-main);
-  line-height: 1.65;
+  line-height: 1.7;
   letter-spacing: 0.02em;
   overflow-x: hidden;
 }
 
-/* ---------------- 手機專用直式版面容器 ---------------- */
-/* 在桌面螢幕居中模擬手機直式螢幕，在手機上全螢幕貼合 */
+/* ---------------- 手機專用直式版面容器 (限制最大寬度 480px) ---------------- */
 .mobile-wrapper {
-  max-width: 500px;
+  max-width: 480px;
   min-height: 100vh;
   margin: 0 auto;
   background-color: var(--bg-mobile);
   position: relative;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
   padding-bottom: calc(75px + var(--safe-bottom));
@@ -107,12 +107,12 @@ html, body {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 253, 250, 0.94);
+  background: rgba(255, 253, 250, 0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-  padding: 10px 16px 8px 16px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+  padding: 10px 14px 8px 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .header-top {
@@ -129,23 +129,23 @@ html, body {
 }
 
 .logo-circle {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-full);
   background: linear-gradient(135deg, #f59e0b, #d97706);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
-  box-shadow: 0 3px 8px rgba(217, 119, 6, 0.3);
+  font-size: 1.15rem;
+  box-shadow: 0 3px 8px rgba(217, 119, 6, 0.35);
   flex-shrink: 0;
 }
 
 .logo-circle.large {
-  width: 52px;
-  height: 52px;
-  font-size: 1.5rem;
+  width: 50px;
+  height: 50px;
+  font-size: 1.45rem;
 }
 
 .church-name {
@@ -159,20 +159,19 @@ html, body {
 .church-tagline {
   font-size: 0.78rem;
   color: var(--primary-dark);
-  font-weight: 600;
-  opacity: 0.9;
+  font-weight: 700;
 }
 
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .action-btn {
   background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  color: var(--text-muted);
+  border: 1px solid #cbd5e1;
+  color: var(--text-main);
   width: 38px;
   height: 38px;
   border-radius: var(--radius-full);
@@ -197,7 +196,7 @@ html, body {
 
 .font-dropdown {
   position: absolute;
-  top: 46px;
+  top: 44px;
   right: 0;
   background: #ffffff;
   border: 1px solid #e2e8f0;
@@ -207,7 +206,7 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  min-width: 110px;
+  min-width: 116px;
   z-index: 60;
   animation: fadeInDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -220,8 +219,8 @@ html, body {
   background: none;
   border: none;
   padding: 8px 12px;
-  font-size: 0.92rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 700;
   color: var(--text-main);
   text-align: left;
   border-radius: var(--radius-sm);
@@ -234,40 +233,60 @@ html, body {
   color: var(--primary-dark);
 }
 
-/* 期數標籤與搜尋觸發按鈕 */
+/* ---------------- 期數切換與搜尋列 ---------------- */
 .bulletin-meta-bar {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin-top: 8px;
 }
 
-.issue-pill {
-  display: inline-flex;
+.issue-selector-wrap {
+  position: relative;
+  display: flex;
   align-items: center;
-  gap: 5px;
-  background: var(--secondary-light);
-  color: var(--secondary);
-  font-size: 0.8rem;
-  font-weight: 700;
-  padding: 4px 10px;
+  flex: 1.1;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
   border-radius: var(--radius-full);
-  white-space: nowrap;
+  padding: 2px 8px;
+}
+
+.issue-icon {
+  color: var(--primary-dark);
+  font-size: 0.85rem;
+  margin-right: 4px;
+}
+
+.issue-select {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #78350f;
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 5px 2px;
+  outline: none;
+  cursor: pointer;
+  text-overflow: ellipsis;
 }
 
 .search-trigger-btn {
-  flex: 1;
+  flex: 0.9;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 6px;
   background: #f1f5f9;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #cbd5e1;
   color: var(--text-muted);
-  padding: 6px 12px;
+  padding: 6px 10px;
   border-radius: var(--radius-full);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .search-trigger-btn:active {
@@ -326,7 +345,7 @@ html, body {
 .search-stats {
   font-size: 0.82rem;
   color: var(--primary-dark);
-  font-weight: 600;
+  font-weight: 700;
   padding: 4px 8px 0 8px;
 }
 
@@ -338,14 +357,14 @@ html, body {
 mark.search-highlight {
   background-color: #fef08a;
   color: #854d0e;
-  padding: 1px 3px;
+  padding: 1px 4px;
   border-radius: 3px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 /* ---------------- 內容主區域 ---------------- */
 .app-main {
-  padding: 14px 14px 24px 14px;
+  padding: 12px 12px 24px 12px;
   flex: 1;
 }
 
@@ -367,7 +386,7 @@ mark.search-highlight {
   color: #78350f;
   padding: 14px 16px;
   border-radius: var(--radius-lg);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   box-shadow: var(--shadow-sm);
 }
 
@@ -398,13 +417,14 @@ mark.search-highlight {
 
 .banner-title {
   font-size: var(--title-size);
-  font-weight: 800;
+  font-weight: 900;
   line-height: 1.2;
 }
 
 .banner-sub {
   font-size: 0.85rem;
-  opacity: 0.85;
+  font-weight: 600;
+  opacity: 0.9;
 }
 
 /* ---------------- 通用卡片設計 ---------------- */
@@ -418,9 +438,9 @@ mark.search-highlight {
 .roster-card {
   background: var(--bg-card);
   border-radius: var(--radius-lg);
-  padding: 18px 16px;
-  margin-bottom: 16px;
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  padding: 16px 14px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(226, 232, 240, 0.85);
   box-shadow: var(--shadow-md);
   position: relative;
   overflow: hidden;
@@ -436,7 +456,7 @@ mark.search-highlight {
   background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 60%, #fed7aa 100%);
   border: 1px solid #fde68a;
   box-shadow: var(--shadow-float);
-  padding: 24px 18px;
+  padding: 22px 16px;
   text-align: center;
 }
 
@@ -471,7 +491,7 @@ mark.search-highlight {
   background: rgba(217, 119, 6, 0.15);
   color: var(--primary-dark);
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 800;
   padding: 4px 14px;
   border-radius: var(--radius-full);
   margin-bottom: 8px;
@@ -483,14 +503,14 @@ mark.search-highlight {
   font-weight: 900;
   color: #78350f;
   margin-bottom: 4px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
 }
 
 .hero-subtitle {
   font-size: 0.95rem;
   color: #92400e;
-  font-weight: 500;
-  margin-bottom: 16px;
+  font-weight: 600;
+  margin-bottom: 14px;
 }
 
 .hero-quick-links {
@@ -504,8 +524,8 @@ mark.search-highlight {
   background: #ffffff;
   border: 1px solid #fcd34d;
   color: #92400e;
-  font-size: 0.9rem;
-  font-weight: 700;
+  font-size: 0.92rem;
+  font-weight: 800;
   padding: 8px 14px;
   border-radius: var(--radius-full);
   cursor: pointer;
@@ -531,7 +551,7 @@ mark.search-highlight {
 .card-header-styled {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 12px;
 }
 
@@ -577,7 +597,7 @@ mark.search-highlight {
 
 .card-title {
   font-size: var(--title-size);
-  font-weight: 800;
+  font-weight: 900;
   color: var(--text-main);
   line-height: 1.25;
 }
@@ -591,7 +611,7 @@ mark.search-highlight {
   border: 1px solid #fde68a;
   color: #b45309;
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 800;
   padding: 6px 12px;
   border-radius: var(--radius-full);
   cursor: pointer;
@@ -608,24 +628,24 @@ mark.search-highlight {
   background: #ffffff;
   border-left: 4px solid #f59e0b;
   border-radius: var(--radius-md);
-  padding: 14px 16px;
-  margin-bottom: 14px;
+  padding: 14px 14px;
+  margin-bottom: 12px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
 .verse-text {
   font-family: 'Noto Serif TC', serif;
   font-size: var(--lead-size);
-  font-weight: 700;
+  font-weight: 800;
   color: #78350f;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 .verse-source {
   margin-top: 8px;
   text-align: right;
-  font-size: 0.95rem;
-  font-weight: 700;
+  font-size: 0.98rem;
+  font-weight: 800;
   color: #d97706;
 }
 
@@ -639,11 +659,11 @@ mark.search-highlight {
   flex: 1;
   min-width: 140px;
   background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #cbd5e1;
   color: var(--text-main);
-  font-size: 0.88rem;
-  font-weight: 600;
-  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 10px 12px;
   border-radius: var(--radius-md);
   cursor: pointer;
   display: inline-flex;
@@ -658,10 +678,10 @@ mark.search-highlight {
   color: var(--primary-dark);
 }
 
-/* 今日特別提醒通知 */
+/* 焦點提醒通知 */
 .notice-card {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   background: #eff6ff;
   border-left: 4px solid #3b82f6;
   border-radius: var(--radius-md);
@@ -681,16 +701,17 @@ mark.search-highlight {
 }
 
 .notice-body p {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: #1e3a8a;
   margin-top: 2px;
+  line-height: 1.6;
 }
 
 /* 講道預覽速報 */
 .sermon-meta {
   background: #f8fafc;
   border-radius: var(--radius-md);
-  padding: 10px 14px;
+  padding: 10px 12px;
   margin: 10px 0;
   display: flex;
   flex-direction: column;
@@ -709,8 +730,9 @@ mark.search-highlight {
 }
 
 .sermon-desc {
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   color: var(--text-muted);
+  line-height: 1.65;
 }
 
 /* 壽星祝福卡片 */
@@ -728,7 +750,7 @@ mark.search-highlight {
   border: 1px solid #fda4af;
   color: #be123c;
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 800;
   padding: 6px 12px;
   border-radius: var(--radius-full);
   cursor: pointer;
@@ -745,14 +767,14 @@ mark.search-highlight {
 .birthday-lead {
   font-size: 0.92rem;
   color: #9f1239;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 12px;
 }
 
 .birthday-names {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 .birthday-pill {
@@ -760,7 +782,7 @@ mark.search-highlight {
   border: 1px solid #fbcfe8;
   color: #831843;
   font-size: 0.88rem;
-  font-weight: 600;
+  font-weight: 700;
   padding: 4px 10px;
   border-radius: var(--radius-full);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
@@ -770,7 +792,7 @@ mark.search-highlight {
   background: #fdf2f8;
   border: 1.5px solid #db2777;
   color: #9d174d;
-  font-weight: 800;
+  font-weight: 900;
 }
 
 /* 聯絡資訊卡片 */
@@ -781,7 +803,7 @@ mark.search-highlight {
 
 .contact-title {
   font-size: 1.05rem;
-  font-weight: 800;
+  font-weight: 900;
   color: var(--text-main);
   margin-bottom: 10px;
   display: flex;
@@ -794,7 +816,7 @@ mark.search-highlight {
   align-items: center;
   gap: 10px;
   padding: 6px 0;
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   border-bottom: 1px dashed #e2e8f0;
 }
 
@@ -807,8 +829,8 @@ mark.search-highlight {
   background: #ffffff;
   border: 1px solid #cbd5e1;
   color: var(--secondary);
-  font-size: 0.82rem;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 800;
   padding: 4px 10px;
   border-radius: var(--radius-full);
   text-decoration: none;
@@ -819,15 +841,15 @@ mark.search-highlight {
 .worship-speaker-box {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 6px;
+  margin-bottom: 14px;
 }
 
 .speaker-chip {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: var(--radius-md);
-  padding: 8px;
+  padding: 8px 6px;
   text-align: center;
   box-shadow: var(--shadow-sm);
 }
@@ -836,12 +858,13 @@ mark.search-highlight {
   display: block;
   font-size: 0.76rem;
   color: var(--text-muted);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .speaker-chip .val {
   font-size: 0.95rem;
   color: var(--primary-dark);
+  font-weight: 800;
 }
 
 .timeline-container {
@@ -861,7 +884,7 @@ mark.search-highlight {
 
 .timeline-item {
   position: relative;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .timeline-marker {
@@ -875,7 +898,7 @@ mark.search-highlight {
   border: 2px solid var(--primary);
   color: var(--primary);
   font-size: 0.82rem;
-  font-weight: 800;
+  font-weight: 900;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -911,21 +934,21 @@ mark.search-highlight {
 
 .item-title {
   font-size: 1.05rem;
-  font-weight: 800;
+  font-weight: 900;
   color: var(--text-main);
 }
 
 .item-role {
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   background: #f1f5f9;
   color: var(--text-muted);
   padding: 2px 8px;
   border-radius: var(--radius-full);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .item-desc {
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   color: var(--text-muted);
 }
 
@@ -942,8 +965,8 @@ mark.search-highlight {
   color: #3730a3;
   padding: 6px 10px;
   border-radius: 4px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.92rem;
+  font-weight: 700;
 }
 
 .sermon-badge-title {
@@ -965,8 +988,8 @@ mark.search-highlight {
   border-radius: var(--radius-sm);
   padding: 6px 10px;
   color: var(--primary-dark);
-  font-size: 0.85rem;
-  font-weight: 700;
+  font-size: 0.88rem;
+  font-weight: 800;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -980,8 +1003,8 @@ mark.search-highlight {
   padding: 10px 12px;
   background: #f8fafc;
   border-radius: var(--radius-md);
-  font-size: 0.92rem;
-  line-height: 1.7;
+  font-size: 0.94rem;
+  line-height: 1.75;
   animation: fadeIn 0.2s ease;
 }
 
@@ -996,7 +1019,7 @@ mark.search-highlight {
   padding: 12px;
   border-radius: var(--radius-md);
   border: 1px solid #bfdbfe;
-  line-height: 1.8;
+  line-height: 1.85;
 }
 
 .award-box {
@@ -1011,8 +1034,8 @@ mark.search-highlight {
   display: inline-block;
   background: #ca8a04;
   color: #ffffff;
-  font-size: 0.72rem;
-  font-weight: 700;
+  font-size: 0.74rem;
+  font-weight: 800;
   padding: 2px 6px;
   border-radius: 4px;
   margin-bottom: 4px;
@@ -1042,7 +1065,7 @@ mark.search-highlight {
   background: #f1f5f9;
   color: var(--text-muted);
   font-size: 0.9rem;
-  font-weight: 800;
+  font-weight: 900;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1055,15 +1078,15 @@ mark.search-highlight {
 
 .news-title {
   font-size: 1.05rem;
-  font-weight: 800;
+  font-weight: 900;
   color: var(--text-main);
   margin-bottom: 4px;
 }
 
 .news-content p {
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .news-tag {
@@ -1071,10 +1094,10 @@ mark.search-highlight {
   align-items: center;
   gap: 4px;
   background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #cbd5e1;
   color: var(--text-muted);
-  font-size: 0.76rem;
-  font-weight: 600;
+  font-size: 0.78rem;
+  font-weight: 700;
   padding: 3px 8px;
   border-radius: var(--radius-full);
   margin-top: 8px;
@@ -1100,8 +1123,8 @@ mark.search-highlight {
 .news-pills-wrap span {
   background: #fff1f2;
   color: #9f1239;
-  font-size: 0.84rem;
-  font-weight: 600;
+  font-size: 0.88rem;
+  font-weight: 700;
   padding: 3px 8px;
   border-radius: var(--radius-sm);
 }
@@ -1122,8 +1145,8 @@ mark.search-highlight {
 
 .award-subtitle {
   display: block;
-  font-size: 0.88rem;
-  font-weight: 700;
+  font-size: 0.9rem;
+  font-weight: 800;
   color: #92400e;
   margin-bottom: 4px;
 }
@@ -1137,8 +1160,8 @@ mark.search-highlight {
 .name-chip {
   background: #f1f5f9;
   color: var(--text-main);
-  font-size: 0.86rem;
-  font-weight: 600;
+  font-size: 0.88rem;
+  font-weight: 700;
   padding: 3px 8px;
   border-radius: var(--radius-full);
 }
@@ -1146,23 +1169,24 @@ mark.search-highlight {
 .name-chip.chip-gold {
   background: #fef08a;
   color: #854d0e;
-  font-weight: 700;
+  font-weight: 800;
 }
 
-/* ---------------- 代禱事項 (Prayer) ---------------- */
+/* ---------------- 守望代禱事項 (Prayer) ---------------- */
 .prayer-instructions {
   background: #fef3c7;
   color: #92400e;
   padding: 10px 14px;
   border-radius: var(--radius-md);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   margin-bottom: 14px;
 }
 
 .prayer-categories {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .prayer-card {
@@ -1185,8 +1209,8 @@ mark.search-highlight {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.86rem;
-  font-weight: 800;
+  font-size: 0.88rem;
+  font-weight: 900;
   padding: 4px 12px;
   border-radius: var(--radius-full);
 }
@@ -1196,10 +1220,11 @@ mark.search-highlight {
 .badge-church { background: #e0e7ff; color: #3730a3; }
 .badge-edu { background: #fef3c7; color: #92400e; }
 .badge-military { background: #f1f5f9; color: #334155; }
+.badge-work { background: #ffedd5; color: #c2410c; }
 
 .prayer-counter {
-  font-size: 0.8rem;
-  font-weight: 700;
+  font-size: 0.82rem;
+  font-weight: 800;
   color: var(--text-muted);
 }
 
@@ -1213,13 +1238,13 @@ mark.search-highlight {
 .sub-prayer-item {
   display: flex;
   gap: 8px;
-  font-size: 0.94rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.65;
 }
 
 .num-bullet {
   color: var(--primary);
-  font-weight: 800;
+  font-weight: 900;
   flex-shrink: 0;
 }
 
@@ -1234,8 +1259,8 @@ mark.search-highlight {
   background: linear-gradient(135deg, #f59e0b, #d97706);
   color: #ffffff;
   border: none;
-  font-size: 0.92rem;
-  font-weight: 700;
+  font-size: 0.94rem;
+  font-weight: 800;
   padding: 9px 18px;
   border-radius: var(--radius-full);
   cursor: pointer;
@@ -1256,7 +1281,7 @@ mark.search-highlight {
   box-shadow: 0 4px 10px rgba(16, 185, 129, 0.25);
 }
 
-/* 祈禱飛升動畫浮現特效 */
+/* 祈禱飛升愛心微動畫 */
 .floating-prayer-heart {
   position: fixed;
   pointer-events: none;
@@ -1295,9 +1320,9 @@ mark.search-highlight {
   flex: 1;
   background: transparent;
   border: none;
-  padding: 10px 14px;
+  padding: 10px 12px;
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text-muted);
   border-radius: var(--radius-full);
   cursor: pointer;
@@ -1326,7 +1351,7 @@ mark.search-highlight {
 .roster-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  gap: 8px;
 }
 
 .roster-cell {
@@ -1348,13 +1373,13 @@ mark.search-highlight {
   gap: 6px;
   font-size: 0.8rem;
   color: var(--text-muted);
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 4px;
 }
 
 .role-names {
   font-size: 0.96rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text-main);
   display: block;
 }
@@ -1373,20 +1398,20 @@ mark.search-highlight {
 .schedule-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
 }
 
 .schedule-table th {
   background: #f1f5f9;
   text-align: left;
   padding: 8px 10px;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text-muted);
   border-bottom: 2px solid #e2e8f0;
 }
 
 .schedule-table td {
-  padding: 10px;
+  padding: 10px 8px;
   border-bottom: 1px solid #f1f5f9;
 }
 
@@ -1395,7 +1420,7 @@ mark.search-highlight {
   background: #e2e8f0;
   color: var(--text-main);
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 700;
   padding: 2px 8px;
   border-radius: var(--radius-full);
 }
@@ -1425,7 +1450,7 @@ mark.search-highlight {
   display: block;
   font-size: 0.78rem;
   color: var(--text-muted);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .sum-amount {
@@ -1446,7 +1471,7 @@ mark.search-highlight {
   justify-content: space-between;
   align-items: center;
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text-muted);
   margin-bottom: 10px;
   flex-wrap: wrap;
@@ -1459,6 +1484,7 @@ mark.search-highlight {
   padding: 2px 8px;
   border-radius: var(--radius-full);
   font-size: 0.78rem;
+  font-weight: 700;
 }
 
 .offering-grid {
@@ -1471,18 +1497,20 @@ mark.search-highlight {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: var(--radius-sm);
-  padding: 6px 8px;
+  padding: 6px 6px;
   text-align: center;
 }
 
 .offering-chip span {
   display: block;
-  font-size: 0.74rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
+  font-weight: 600;
 }
 
 .offering-chip strong {
   font-size: 0.95rem;
+  font-weight: 800;
   color: var(--text-main);
 }
 
@@ -1529,7 +1557,7 @@ mark.search-highlight {
 .profile-motto {
   font-size: 0.85rem;
   color: var(--primary-dark);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .profile-contact-list {
@@ -1542,12 +1570,12 @@ mark.search-highlight {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  font-size: 0.92rem;
+  font-size: 0.94rem;
 }
 
 .p-item > i {
   color: var(--primary);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   margin-top: 4px;
   width: 20px;
   text-align: center;
@@ -1561,12 +1589,13 @@ mark.search-highlight {
   display: block;
   font-size: 0.78rem;
   color: var(--text-muted);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .p-val {
   color: var(--text-main);
-  font-weight: 600;
+  font-weight: 700;
+  line-height: 1.6;
 }
 
 .p-val a {
@@ -1578,14 +1607,14 @@ mark.search-highlight {
   background: #f1f5f9;
   border: 1px solid #e2e8f0;
   color: var(--secondary);
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   flex-shrink: 0;
 }
 
@@ -1596,10 +1625,10 @@ mark.search-highlight {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 500px;
+  max-width: 480px;
   height: calc(65px + var(--safe-bottom));
   padding-bottom: var(--safe-bottom);
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-top: 1px solid #e2e8f0;
@@ -1620,7 +1649,7 @@ mark.search-highlight {
   gap: 3px;
   color: var(--text-light);
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 800;
   cursor: pointer;
   padding: 6px 4px;
   flex: 1;
@@ -1637,29 +1666,31 @@ mark.search-highlight {
 }
 
 .nav-tab.active i {
-  transform: translateY(-2px) scale(1.1);
+  transform: translateY(-2px) scale(1.12);
   color: var(--primary);
 }
 
 /* ---------------- Toast 彈跳提示 ---------------- */
 .toast {
   position: fixed;
-  bottom: calc(80px + var(--safe-bottom));
+  bottom: calc(78px + var(--safe-bottom));
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(30, 41, 59, 0.95);
+  background: rgba(30, 41, 59, 0.96);
   color: #ffffff;
   padding: 10px 18px;
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.92rem;
+  font-weight: 700;
   box-shadow: var(--shadow-lg);
   z-index: 100;
   animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
+  max-width: 90%;
+  text-align: center;
 }
 
 .toast.hidden {
@@ -1673,7 +1704,7 @@ mark.search-highlight {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(15, 23, 42, 0.5);
+  background: rgba(15, 23, 42, 0.55);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   display: flex;
@@ -1692,13 +1723,13 @@ mark.search-highlight {
   border-radius: var(--radius-xl);
   max-width: 440px;
   width: 100%;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   animation: popIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .modal-header {
-  padding: 16px 20px;
+  padding: 16px 18px;
   background: #fef3c7;
   display: flex;
   justify-content: space-between;
@@ -1708,7 +1739,7 @@ mark.search-highlight {
 
 .modal-header h3 {
   font-size: 1.15rem;
-  font-weight: 800;
+  font-weight: 900;
   color: #78350f;
   display: flex;
   align-items: center;
@@ -1718,14 +1749,16 @@ mark.search-highlight {
 .modal-close {
   background: none;
   border: none;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   color: #78350f;
   cursor: pointer;
   line-height: 1;
 }
 
 .modal-body {
-  padding: 20px;
+  padding: 20px 18px;
+  max-height: 60vh;
+  overflow-y: auto;
 }
 
 .modal-verse {
@@ -1733,17 +1766,18 @@ mark.search-highlight {
   font-size: 1.05rem;
   line-height: 2;
   color: var(--text-main);
+  white-space: pre-line;
 }
 
 .v-num {
   font-size: 0.8rem;
   color: var(--primary);
-  font-weight: 800;
+  font-weight: 900;
   margin-right: 4px;
 }
 
 .modal-footer {
-  padding: 12px 20px 18px 20px;
+  padding: 12px 18px 16px 18px;
   text-align: center;
 }
 
@@ -1753,14 +1787,14 @@ mark.search-highlight {
   color: #ffffff;
   border: none;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 800;
   padding: 12px;
   border-radius: var(--radius-full);
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
 }
 
-/* ---------------- 關鍵影格動畫 ---------------- */
+/* 關鍵影格動畫 */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
